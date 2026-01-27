@@ -1,0 +1,62 @@
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    user: "0"
+    networks:
+      - proxy
+    volumes:
+    - ./grafana:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    security_opt: 
+      - no-new-privileges 
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:latest
+    restart: unless-stopped
+#    ports:
+#      - 8086:8086
+#      - 8089:8089/udp
+    environment:
+      - TZ=Europe/Moscow
+    networks:
+      - proxy
+      - influxdb
+    volumes:
+      - ./influxdb:/var/lib/influxdb2
+    security_opt: 
+      - no-new-privileges
+
+  telegraf:
+    container_name: telegraf
+    image: telegraf
+    restart: unless-stopped
+    user: telegraf:989 #you need to find the GID of Docker if not added to Sudo group
+    networks:
+      - influxdb
+    volumes:
+      - ./telegraf:/etc/telegraf
+      - /:/hostfs:ro # to monitor docker-vm
+      - /var/run/docker.sock:/var/run/docker.sock:ro # to monitor docker containers
+#     ports:
+#      - 8125:8125
+    depends_on:
+      - influxdb
+    environment:
+        - HOST_ETC=/hostfs/etc
+        - HOST_PROC=/hostfs/proc
+        - HOST_SYS=/hostfs/sys
+        - HOST_VAR=/hostfs/var
+        - HOST_RUN=/hostfs/run
+        - HOST_MOUNT_PREFIX=/hostfs
+    security_opt: 
+      - no-new-privileges
+
+networks:
+  influxdb:
+  proxy:
+    name: proxy 
+    external: true

@@ -1,0 +1,64 @@
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    networks:
+      proxy:
+      npm:
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '2121:2121/tcp' # SFTP
+      - '22000:22000/tcp' #Syncthing
+      - '222:222/tcp' #SSH Forgejo
+#      - '53:53/tcp' #adguardhome
+#      - '53:53/udp' #adguardhome
+#      - '81:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    security_opt: 
+      - no-new-privileges
+    environment:
+      # Mysql/Maria connection parameters:
+      DB_MYSQL_HOST: "db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "password"
+      DB_MYSQL_NAME: "npm"
+      DISABLE_IPV6: 'true'
+#      INITIAL_ADMIN_EMAIL: my@example.com
+#      INITIAL_ADMIN_PASSWORD: mypassword1
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      - ./config:/config
+    depends_on:
+      - db
+
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    container_name: nginx-proxy-manager-mariadb
+    restart: unless-stopped
+    security_opt: 
+      - no-new-privileges
+    networks:
+      npm:
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'password'
+      MARIADB_AUTO_UPGRADE: '1'
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+networks:
+  proxy:
+     name: proxy # Specifies the external network to connect to
+     external: true # Indicates that the network is external
+  npm:
+     name: npm

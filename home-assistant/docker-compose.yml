@@ -1,0 +1,23 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+#    ports:
+#      - "8123:8123"
+    environment:
+      - TZ=Etc/Moscow
+    devices:
+#      - /path/to/device:/path/to/device #optional
+       - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_4450d1607bc2ef11b7fcc3138148b910-if00-port0:/dev/ttyUSB0
+    restart: unless-stopped
+    networks:
+      proxy:
+    security_opt: 
+      - no-new-privileges
+
+networks:
+  proxy:
+    name: proxy 
+    external: true

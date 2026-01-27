@@ -1,0 +1,35 @@
+services:
+  syncthing:
+    image: syncthing/syncthing
+    container_name: syncthing
+    hostname: my-syncthing
+    environment:
+      - PUID=3100
+      - PGID=3100
+    volumes:
+      - /home/syncthing/data:/var/syncthing/data
+      - /home/syncthing/config:/var/syncthing/config
+#    ports:
+#      - 8384:8384 # Web UI
+#      - 22000:22000/tcp # TCP file transfers
+#      - 22000:22000/udp # QUIC file transfers
+#      - 2121:2132/tcp
+#      - 10.0.0.2:22000:22000/udp
+#      - 21027:21027/udp # Receive local discovery broadcasts
+    restart: unless-stopped
+    networks:
+      proxy:
+    healthcheck:
+      test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    security_opt: 
+      - no-new-privileges
+
+networks:
+  proxy:
+    name: proxy # Specifies the external network to connect to
+    external: true # Indicates that the network is external
+#  npm:
+#    name: npm

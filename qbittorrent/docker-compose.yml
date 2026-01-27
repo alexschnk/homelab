@@ -1,0 +1,26 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    networks:
+      proxy:
+    environment:
+      - PUID=3003
+      - PGID=3003
+      - TZ=Europe/Moscow
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /home/qbittorrent/config:/config
+      - /home/qbittorrent/downloads:/downloads #optional
+#    ports:
+#      - 8080:8080
+#      - 6881:6881
+#      - 6881:6881/udp
+    restart: unless-stopped
+    security_opt: 
+      - no-new-privileges
+networks:
+    proxy:
+      name: proxy 
+      external: true
