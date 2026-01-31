@@ -5,3 +5,5 @@ client_max_body_size 0;
 
 # Host
 http://nextcloud-aio-apache:11000
+
+# Add self-signed SSL
