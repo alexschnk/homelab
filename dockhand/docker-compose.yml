@@ -1,0 +1,17 @@
+services:
+  dockhand:
+    image: fnsys/dockhand:latest
+    container_name: dockhand
+    restart: unless-stopped
+#    ports:
+#      - 3000:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./dockhand_data:/app/data
+    networks:
+      proxy:
+
+networks:
+  proxy:
+     name: proxy # Specifies the external network to connect to
+     external: true # Indicates that the network is external
