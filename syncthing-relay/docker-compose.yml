@@ -1,0 +1,19 @@
+services:
+  strelaysrv:
+    image: syncthing/relaysrv:latest
+    container_name: syncthing-relay
+    restart: unless-stopped
+    ports:
+      - "443:22067"
+      - "22070:22070"
+    command: >
+      -keys=/var/strelaysrv 
+      -provided-by="MyPrivateRelay"
+      -global-rate=10000000 
+      -per-session-rate=5000000
+      -nat=false
+      -pools="" 
+    volumes:
+      - ./certs:/var/strelaysrv
+    security_opt: 
+      - no-new-privileges
