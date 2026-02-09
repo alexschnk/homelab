@@ -1,0 +1,103 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Сервера:
+
+    - Proxmox virtual environment:
+        icon: proxmox.png
+        href: 
+        description: Сервер виртуализации
+        widget:
+          type: proxmox
+          url: 
+          username: 
+          password: 
+          ignoreInsecure: true
+
+    - Proxmox backup server:
+        icon: proxmox.png
+        href: 
+        description: Сервер резервного копирования VM 
+        widget:
+          type: proxmoxbackupserver
+          url: 
+          username: 
+          password: 
+          ignoreInsecure: true
+
+    - TrueNAS Scale:
+        icon: truenas.png
+        href: 
+        description: NAS
+        widget:
+          type: truenas
+          url: 
+          version: 2 # optional, defaults to 1
+          enablePools: true # optional, defaults to false
+          nasType: scale
+          key: 
+
+    - OpenWRT:
+        icon: openwrt.png
+        href: 
+        description: Маршрутизатор
+        widget:
+          type: openwrt
+          url: 
+          username: 
+          password: 
+#          interfaceName: br-lan # optional
+
+- Сервисы:
+
+    - Nginx proxy manager:
+        icon: nginx-proxy-manager.png
+        href: 
+        description: Обратный прокси
+
+    - Adguard home:
+        icon: adguard-home.png
+        href: 
+        description: DNS-сервер
+
+    - Dockhand:
+        icon: dockhand.png
+        href: 
+        description: Оркестратор Docker
+
+    - Home Assistant:
+        icon: home-assistant.png
+        href: 
+        description: Умный дом
+
+    - Forgejo:
+        icon: forgejo.png
+        href: 
+        description: Хостинг кода
+
+    - Syncthing:
+        icon: syncthing.png
+        href: 
+        description: Синхронизация файлов
+
+    - Syncthing:
+        icon: syncthing.png
+        href: 
+        description: Синхронизация файлов. Клиент ПК
+
+    - Qbittorrent:
+        icon: qbittorrent.png
+        href: 
+        description: Торрент-клиент
+
+    - Gotify:
+        icon: gotify.png
+        href: 
+        description: Сервер пуш-уведомлений
+
+    - Nextcloud:
+        icon: nextcloud.png
+        href: 
+        description: Домашнее облако
+

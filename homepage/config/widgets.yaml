@@ -1,0 +1,19 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    uptime: true
+    network: true
+
+- search:
+    provider: [duckduckgo, google]
+    target: _blank
+
+#- search:
+#    provider: custom
+#    url: https://www.google.com/search?udm=50&aep=42
+#    target: _blank
