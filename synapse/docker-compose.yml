@@ -1,0 +1,39 @@
+services:
+
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: matrix_synapse
+    restart: unless-stopped
+    volumes:
+     - ./data:/data
+#    ports:
+#     - '127.0.0.1:8008:8008'
+    depends_on:
+      - postgres
+    security_opt: 
+      - no-new-privileges
+    networks:
+      matrix:
+      proxy:
+
+  postgres:
+    image: postgres:latest
+    container_name: matrix_postgres
+    restart: unless-stopped
+    volumes:
+     - ./postgresdata:/var/lib/postgresql/data/pgdata
+    environment:
+     - POSTGRES_DB=synapse
+     - POSTGRES_USER=synapse
+     - POSTGRES_PASSWORD=password123!
+     - POSTGRES_INITDB_ARGS=--lc-collate C --lc-ctype C --encoding UTF8
+    security_opt: 
+      - no-new-privileges
+    networks:
+      matrix:
+
+networks:
+  proxy:
+    name: proxy 
+    external: true
+  matrix:
