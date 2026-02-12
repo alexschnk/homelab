@@ -1,0 +1,1 @@
+--o:net.proto=IPv4 --o:net.ipv6=false 
