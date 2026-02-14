@@ -1,0 +1,67 @@
+services:
+  cloudreve:
+    container_name: cloudreve
+    image: cloudreve/cloudreve:latest
+    restart: unless-stopped
+#    ports:
+#      - "5212:5212" # Можно убрать, если прокси в той же docker-сети
+    volumes:
+#      - /home/cloudreve/config:/cloudreve/config
+#      - /home/cloudreve/data:/cloudreve/db
+      - /home/cloudreve/uploads:/cloudreve/uploads
+#      - /home/cloudreve/temp:/cloudreve/avatar      - /home/cloudreve/data:/cloudreve/db
+ #     - /home/cloudreve/data:cloudreve/data
+      - backend_data:/cloudreve/data
+    environment:
+      - PUID=3004
+      - PGID=3004
+      - TZ=Europe/Moscow
+      - CR_CONF_Database.Type=postgres
+      - CR_CONF_Database.Host=postgresql
+      - CR_CONF_Database.User=cloudreve
+      - CR_CONF_Database.Name=cloudreve
+      - CR_CONF_Database.Port=5432
+      - CR_CONF_Redis.Server=redis:6379
+    depends_on:
+      - postgresql
+      - redis
+    security_opt: 
+      - no-new-privileges
+    networks:
+      cloud:
+      proxy:
+
+  postgresql:
+    # Best practice: Pin to major version. 
+    # NOTE: For major version jumps:
+    # backup & consult https://www.postgresql.org/docs/current/pgupgrade.html 
+    image: postgres:17    
+    container_name: postgresql
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=cloudreve
+      - POSTGRES_DB=cloudreve
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./database_postgres:/var/lib/postgresql/data
+    networks:
+      cloud:
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    volumes:
+      - ./redis_data:/data
+    networks:
+      cloud:
+
+networks:
+  proxy:
+    name: proxy 
+    external: true
+  cloud:
+     name: cloud
+
+volumes:
+  backend_data:
