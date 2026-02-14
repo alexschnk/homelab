@@ -1,0 +1,23 @@
+services:
+  nextexplorer:
+    image: nxzai/explorer:latest
+    container_name: nextexplorer
+    restart: unless-stopped
+#    ports:
+#      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - PUBLIC_URL=https://domain.ru
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - ./Projects:/mnt/Projects
+      - ./Downloads:/mnt/Downloads
+    networks:
+      proxy:
+    security_opt: 
+      - no-new-privileges
+networks:
+  proxy:
+    name: proxy 
+    external: true
