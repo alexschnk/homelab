@@ -2,7 +2,7 @@ services:
   rclone:
     image: rclone/rclone
     container_name: rclone
-    command: rcd --rc-addr=0.0.0.0:5572 --rc-no-auth --rc-allow-origin='https://rclone.homelab.ru'
+    command: rcd --rc-addr=0.0.0.0:5572 --rc-no-auth --rc-web-gui --rc-allow-origin='https://domain.ru' # --rc-allow-origin='*'
  #   ports:
  #     - 5572:5572
     volumes:
@@ -12,7 +12,8 @@ services:
       proxy:
     security_opt: 
       - no-new-privileges
+#    tty: true
 networks:
   proxy:
      name: proxy # Specifies the external network to connect to
-     external: true # Indicates that the network is external
+     external: true
