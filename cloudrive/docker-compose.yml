@@ -8,10 +8,12 @@ services:
     volumes:
 #      - /home/cloudreve/config:/cloudreve/config
 #      - /home/cloudreve/data:/cloudreve/db
+      - /home/cloudreve/test:/cloudreve/test
       - /home/cloudreve/uploads:/cloudreve/uploads
 #      - /home/cloudreve/temp:/cloudreve/avatar      - /home/cloudreve/data:/cloudreve/db
  #     - /home/cloudreve/data:cloudreve/data
-      - backend_data:/cloudreve/data
+      - /home/cloudreve/backend_data:/cloudreve/data
+    user: "3004:3004"
     environment:
       - PUID=3004
       - PGID=3004
@@ -36,7 +38,7 @@ services:
     # NOTE: For major version jumps:
     # backup & consult https://www.postgresql.org/docs/current/pgupgrade.html 
     image: postgres:17    
-    container_name: postgresql
+    container_name: cloudreve-postgresql
     restart: unless-stopped
     environment:
       - POSTGRES_USER=cloudreve
@@ -49,7 +51,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis
+    container_name: cloudreve-redis
     restart: unless-stopped
     volumes:
       - ./redis_data:/data
@@ -63,5 +65,5 @@ networks:
   cloud:
      name: cloud
 
-volumes:
-  backend_data:
+#volumes:
+#  backend_data:
