@@ -91,6 +91,11 @@
         href: 
         description: Торрент-клиент
 
+    - Jellyfin:
+        icon: jellyfin.png
+        href: 
+        description: Медиасервер
+
     - Gotify:
         icon: gotify.png
         href: 
@@ -101,3 +106,7 @@
         href: 
         description: Домашнее облако
 
+    - Immich:
+        icon: immich.png
+        href: 
+        description: Фотогалерея 
