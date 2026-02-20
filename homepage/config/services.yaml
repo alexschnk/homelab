@@ -91,11 +91,6 @@
         href: 
         description: Торрент-клиент
 
-    - Jellyfin:
-        icon: jellyfin.png
-        href: 
-        description: Медиасервер
-
     - Gotify:
         icon: gotify.png
         href: 
