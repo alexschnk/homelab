@@ -64,7 +64,7 @@ location /authelia {
 		proxy_no_cache $cookie_session;
 		proxy_buffers 64 256k;
  
-		set_real_ip_from 172.16.0.0/12;
+		set_real_ip_from 172.0.0.0/12;
 		real_ip_header X-Forwarded-For;
 		real_ip_recursive on;
  
