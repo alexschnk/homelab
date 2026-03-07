@@ -1,0 +1,9 @@
+users:
+    username: ## Username
+        displayname: "username"
+        ## https://www.authelia.com/reference/guides/passwords/#passwords
+        password: "hash"
+        email: "authelia@authelia.com"
+        groups:
+            - "admin"
+            - "dev"

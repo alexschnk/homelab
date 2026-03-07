@@ -1,0 +1,19 @@
+services:
+    authelia:
+        image: "authelia/authelia"
+        container_name: "authelia"
+        volumes:
+            - "./secrets:/secrets:ro"
+            - "./config:/config"
+            - "./logs:/var/log/authelia/"
+        networks:
+            proxy:
+        environment:
+            TZ: "Europe/Moscow"
+            AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: "/secrets/JWT_SECRET" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/JWT_SECRET
+            AUTHELIA_SESSION_SECRET_FILE: "/secrets/SESSION_SECRET" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/SESSION_SECRET
+            AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: "/secrets/STORAGE_ENCRYPTION_KEY" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/STORAGE_ENCRYPTION_KEY
+
+networks:
+    proxy:
+        external: true
