@@ -1,0 +1,41 @@
+2026-03-09T20:13:29+03:00 WRN Traefik can reject some encoded characters in the request path.When your backend is not fully compliant with [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986),it is recommended to set these options to `false` to avoid split-view situation.Refer to the documentation for more details: https://doc.traefik.io/traefik/v3.6/migrate/v3/#encoded-characters-configuration-default-values
+2026-03-09T20:13:29+03:00 INF Traefik version 3.6.10 built on 2026-03-06T15:01:02Z version=3.6.10
+2026-03-09T20:13:29+03:00 INF Version check is enabled.
+2026-03-09T20:13:29+03:00 INF Traefik checks for new releases to notify you if your version is out of date.
+2026-03-09T20:13:29+03:00 INF It also collects usage data during this process.
+2026-03-09T20:13:29+03:00 INF Check the documentation to get more info: https://doc.traefik.io/traefik/contributing/data-collection/
+2026-03-09T20:13:29+03:00 INF 
+Stats collection is disabled.
+Help us improve Traefik by turning this feature on :)
+More details on: https://doc.traefik.io/traefik/contributing/data-collection/
+
+2026-03-09T20:13:29+03:00 INF Starting provider aggregator *aggregator.ProviderAggregator
+2026-03-09T20:13:29+03:00 INF Starting provider *file.Provider
+2026-03-09T20:13:29+03:00 INF Starting provider *traefik.Provider
+2026-03-09T20:13:29+03:00 INF Starting provider *docker.Provider
+2026-03-09T20:13:29+03:00 INF Starting provider *acme.ChallengeTLSALPN
+2026-03-09T20:13:30+03:00 ERR error="middleware \"traefik-auth@docker\" does not exist" entryPointName=https routerName=traefik-secure@docker
+2026-03-09T20:16:27+03:00 INF I have to go...
+2026-03-09T20:16:27+03:00 INF Stopping server gracefully
+2026-03-09T20:16:28+03:00 INF Server stopped
+2026-03-09T20:16:28+03:00 INF Shutting down
+2026-03-09T20:16:46+03:00 WRN Traefik can reject some encoded characters in the request path.When your backend is not fully compliant with [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986),it is recommended to set these options to `false` to avoid split-view situation.Refer to the documentation for more details: https://doc.traefik.io/traefik/v3.6/migrate/v3/#encoded-characters-configuration-default-values
+2026-03-09T20:16:46+03:00 INF Traefik version 3.6.10 built on 2026-03-06T15:01:02Z version=3.6.10
+2026-03-09T20:16:46+03:00 INF Version check is enabled.
+2026-03-09T20:16:46+03:00 INF Traefik checks for new releases to notify you if your version is out of date.
+2026-03-09T20:16:46+03:00 INF It also collects usage data during this process.
+2026-03-09T20:16:46+03:00 INF Check the documentation to get more info: https://doc.traefik.io/traefik/contributing/data-collection/
+2026-03-09T20:16:46+03:00 INF 
+Stats collection is disabled.
+Help us improve Traefik by turning this feature on :)
+More details on: https://doc.traefik.io/traefik/contributing/data-collection/
+
+2026-03-09T20:16:46+03:00 INF Starting provider aggregator *aggregator.ProviderAggregator
+2026-03-09T20:16:46+03:00 INF Starting provider *file.Provider
+2026-03-09T20:16:46+03:00 INF Starting provider *traefik.Provider
+2026-03-09T20:16:46+03:00 INF Starting provider *acme.ChallengeTLSALPN
+2026-03-09T20:16:46+03:00 INF Starting provider *docker.Provider
+2026-03-09T20:17:16+03:00 INF I have to go...
+2026-03-09T20:17:16+03:00 INF Stopping server gracefully
+2026-03-09T20:17:17+03:00 INF Server stopped
+2026-03-09T20:17:17+03:00 INF Shutting down

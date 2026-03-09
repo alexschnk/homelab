@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: /ssl/homelab.crt
+      keyFile: /ssl/homelab.key
+    - certFile: /ssl/moyservak.crt
+      keyFile: /ssl/moyservak.key

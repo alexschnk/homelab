@@ -1,0 +1,47 @@
+services:
+  traefik:
+    image: traefik:latest 
+    container_name: traefik 
+    restart: unless-stopped 
+    security_opt:
+      - no-new-privileges:true 
+    networks:
+       proxy: 
+    ports:
+      - 80:80 
+      - 443:443
+#    environment:
+#      - CF_API_EMAIL=mail@gmail.com # Cloudflare account email for API access
+#      - CF_DNS_API_TOKEN=apitoken # Cloudflare DNS API token
+      # - CF_API_KEY=YOU_API_KEY
+      # - VULTR_API_KEY=YOU_API_KEY
+    volumes:
+      - /etc/localtime:/etc/localtime:ro 
+      - /var/run/docker.sock:/var/run/docker.sock:ro 
+      - ./configs/traefik.yaml:/traefik.yaml:ro 
+      - ./configs/acme.json:/acme.json 
+      - ./dynamic:/dynamic/:ro 
+      - ./logs:/var/log/traefik  
+      - ./ssl:/ssl:ro
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.traefik.entrypoints=http" # Define HTTP entrypoint
+      - "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.homelab.ru`)" # Host rule for routing
+#      - "traefik.http.middlewares.traefik-auth.basicauth.users=user:password" # Basic auth for security traefik for username/pass
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https" # Redirect HTTP to HTTPS
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https" # Set forwarded headers for SSL, needed for external proxy
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect" # Apply HTTPS redirect middleware
+      - "traefik.http.routers.traefik-secure.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik-dashboard.homelab.ru`)"  # Host rule for secure routing
+#      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth" # Apply authentication middleware
+      - "traefik.http.routers.traefik-secure.tls=true" # Enable TLS for secure connection
+#      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare" # Use Cloudflare for SSL certificate resolution
+#      - "traefik.http.routers.traefik-secure.tls.certresolver=vultr"
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].main=user.ru" # Main domain for SSL certificate
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.user.ru" # SANs for SSL certificate
+      - "traefik.http.routers.traefik-secure.service=api@internal" # Internal service for Traefik API
+
+networks:
+  proxy:
+    name: proxy 
+    external: true 
