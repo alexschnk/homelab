@@ -1,0 +1,24 @@
+################################################################
+# Middlewares
+# https://doc.traefik.io/traefik/middlewares/http/headers/#adding-headers-to-the-request-and-the-response
+# Dynamic configuration
+################################################################
+http:
+    middlewares:
+        security-headers:
+            headers:
+                customResponseHeaders: # field names are case-insensitive
+                    Server: "" # prevent version disclosure
+                    X-Powered-By: "" # prevent version disclosure
+                sslProxyHeaders:
+                    X-Forwarded-Proto: "https"
+                hostsProxyHeaders:
+                    - "X-Forwarded-Host"
+                contentTypeNosniff: true # X-Content-Type-Options
+                browserXssFilter: false # X-XSS-Protection; deprecated
+                referrerPolicy: "strict-origin-when-cross-origin" # Referrer-Policy
+                forceSTSHeader: true # HTTP-Strict-Transport-Security (HSTS)
+                stsIncludeSubdomains: true # HTTP-Strict-Transport-Security (HSTS)
+                stsSeconds: 63072000 # HTTP-Strict-Transport-Security (HSTS)
+#                stsPreload: true # HTTP-Strict-Transport-Security (HSTS)
+#                customFrameOptionsValue: "SAMEORIGIN" # X-Frame-Options
