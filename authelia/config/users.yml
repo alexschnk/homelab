@@ -1,8 +1,8 @@
 users:
-    username: ## Username
-        displayname: "username"
+    user: ## Username
+        displayname: "user"
         ## https://www.authelia.com/reference/guides/passwords/#passwords
-        password: "hash"
+        password: "$argon2id$v=19$m=2097152,t=1,p=4$7b0y+Qu8vn4jN9t6gXzUdA$yY5DUn+hfohAi+WK0MMsJXGtNHtGne8s0i4GABxcaug"
         email: "authelia@authelia.com"
         groups:
             - "admin"
