@@ -10,6 +10,7 @@ services:
     ports:
       - 80:80 
       - 443:443
+      - 445:445
 #    environment:
 #      - CF_API_EMAIL=mail@gmail.com # Cloudflare account email for API access
 #      - CF_DNS_API_TOKEN=apitoken # Cloudflare DNS API token

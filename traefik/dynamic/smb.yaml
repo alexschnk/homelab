@@ -1,0 +1,15 @@
+tcp:
+ 
+  routers:
+    smb:
+      entryPoints:
+        - "smb"
+      rule: "HostSNI(`*`)"      
+      service: smb
+
+  services:
+    smb:
+      loadBalancer:
+        servers:
+          - address: "192.168.31.201:445" 
+       
