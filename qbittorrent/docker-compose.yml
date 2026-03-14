@@ -20,6 +20,13 @@ services:
     restart: unless-stopped
     security_opt: 
       - no-new-privileges
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.qbittorrent.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.homelab.ru`)"  # Host rule for secure routing
+      - "traefik.http.routers.qbittorrent.tls=true" # Enable TLS for secure connection
+      - "traefik.http.routers.qbittorrent.middlewares=security-headers@file"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
 networks:
     proxy:
       name: proxy 

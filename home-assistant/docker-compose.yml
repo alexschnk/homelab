@@ -16,6 +16,13 @@ services:
       proxy:
     security_opt: 
       - no-new-privileges
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.home-assistant.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.home-assistant.rule=Host(`home-assistant.homelab.ru`)"  # Host rule for secure routing
+      - "traefik.http.routers.home-assistant.tls=true" # Enable TLS for secure connection
+      - "traefik.http.routers.home-assistant.middlewares=security-headers@file"
+      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
 
 networks:
   proxy:

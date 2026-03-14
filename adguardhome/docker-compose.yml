@@ -17,7 +17,13 @@ services:
       - ./conf:/opt/adguardhome/conf
     security_opt: 
       - no-new-privileges
-
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.adguardhome.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.adguardhome.rule=Host(`adguardhome.homelab.ru`)"  # Host rule for secure routing
+      - "traefik.http.routers.adguardhome.tls=true" # Enable TLS for secure connection
+      - "traefik.http.routers.adguardhome.middlewares=security-headers@file"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=80"
 networks:
   proxy:
     name: proxy 

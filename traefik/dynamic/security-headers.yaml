@@ -14,11 +14,11 @@ http:
                     X-Forwarded-Proto: "https"
                 hostsProxyHeaders:
                     - "X-Forwarded-Host"
-                contentTypeNosniff: true # X-Content-Type-Options
-                browserXssFilter: false # X-XSS-Protection; deprecated
-                referrerPolicy: "strict-origin-when-cross-origin" # Referrer-Policy
-                forceSTSHeader: true # HTTP-Strict-Transport-Security (HSTS)
-                stsIncludeSubdomains: true # HTTP-Strict-Transport-Security (HSTS)
-                stsSeconds: 63072000 # HTTP-Strict-Transport-Security (HSTS)
-#                stsPreload: true # HTTP-Strict-Transport-Security (HSTS)
-#                customFrameOptionsValue: "SAMEORIGIN" # X-Frame-Options
+                contentTypeNosniff: true 
+                browserXssFilter: true 
+                referrerPolicy: "strict-origin-when-cross-origin" 
+                forceSTSHeader: true 
+                stsIncludeSubdomains: true 
+                stsSeconds: 63072000 
+                customFrameOptionsValue: "SAMEORIGIN" 
+                permissionsPolicy: "geolocation=(), camera=(), microphone=()"

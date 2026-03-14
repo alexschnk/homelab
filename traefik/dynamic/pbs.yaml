@@ -1,0 +1,18 @@
+http:
+ #region routers 
+  routers:
+    pbs:
+      entryPoints:
+        - "https"
+      rule: "Host(`pbs.homelab.ru`)"        # Change DOMAIN_NAME to yours
+      middlewares:
+        - security-headers
+      tls: {}
+      service: pbs
+
+  services:
+    pbs:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.31.203:8007"            # Change IP Address to your proxmox instance
+        passHostHeader: true

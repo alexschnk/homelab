@@ -24,16 +24,37 @@
         - abbr: FS
           href: https://forum.samohosting.ru/
 
-#    - Github:
-#        - icon: github.png
-#          href: https://github.com/
 
-#- Social:
-#    - Reddit:
-#        - abbr: RE
-#          href: https://reddit.com/
-
-#- Entertainment:
-#    - YouTube:
-#        - abbr: YT
-#          href: https://youtube.com/
+- Baxet Group:
+    
+   - SCOM:       
+        - abbr: SC
+          href: https://scom.do.indusov.net/accounts/details/310641
+          
+   - Justhost:       
+        - abbr: JH
+          href: http://justhost.ru/
+   
+   - Atlassian:       
+        - abbr: AT
+          href: https://home.atlassian.com/
+   
+   - Fresh Desk:       
+        - abbr: FD
+          href: https://baxet-support.freshdesk.com/
+   
+   - Abuse:       
+        - abbr: AB
+          href: https://abuse.do.indusov.net/
+          
+   - NB (сети):       
+        - abbr: NB
+          href: https://nb.do.indusov.net/ipam/prefixes/
+   
+   - BAPI (фин. операции):       
+        - abbr: BA
+          href: https://bapi.do.indusov.net/admin/
+   
+   - CMDB:       
+        - abbr: CM
+          href: https://cmdb.do.indusov.net/admin/

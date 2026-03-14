@@ -6,33 +6,33 @@
 
     - Proxmox virtual environment:
         icon: proxmox.png
-        href: 
+        href: https://pve.homelab.ru
         description: Сервер виртуализации
         widget:
           type: proxmox
-          url: 
-          username: 
+          url: https://192.168.31.10:8006
+          username: monitoring@pam!homepage
           password: 
           ignoreInsecure: true
 
     - Proxmox backup server:
         icon: proxmox.png
-        href: 
+        href: https://pbs.homelab.ru
         description: Сервер резервного копирования VM 
         widget:
           type: proxmoxbackupserver
-          url: 
-          username: 
+          url: https://192.168.31.203:8007
+          username: root@pam!homepage
           password: 
           ignoreInsecure: true
 
     - TrueNAS Scale:
         icon: truenas.png
-        href: 
+        href: https://truenas.homelab.ru
         description: NAS
         widget:
           type: truenas
-          url: 
+          url: https://192.168.31.201
           version: 2 # optional, defaults to 1
           enablePools: true # optional, defaults to false
           nasType: scale
@@ -40,68 +40,59 @@
 
     - OpenWRT:
         icon: openwrt.png
-        href: 
+        href: https://openwrt.homelab.ru
         description: Маршрутизатор
         widget:
           type: openwrt
-          url: 
-          username: 
+          url: https://192.168.31.1
+          username: monitoring
           password: 
 #          interfaceName: br-lan # optional
 
 - Сервисы:
 
-    - Nginx proxy manager:
-        icon: nginx-proxy-manager.png
-        href: 
+    - Traefik:
+        icon: traefik.png
+        href: https://traefik-dashboard.homelab.ru
         description: Обратный прокси
 
     - Adguard home:
         icon: adguard-home.png
-        href: 
+        href: https://adguardhome.homelab.ru
         description: DNS-сервер
 
     - Dockhand:
         icon: dockhand.png
-        href: 
+        href: https://dockhand.homelab.ru
         description: Оркестратор Docker
 
     - Home Assistant:
         icon: home-assistant.png
-        href: 
+        href: https://home-assistant.homelab.ru
         description: Умный дом
 
     - Forgejo:
         icon: forgejo.png
-        href: 
+        href: https://forgejo.homelab.ru
         description: Хостинг кода
 
     - Syncthing:
         icon: syncthing.png
-        href: 
+        href: https://syncthing.homelab.ru
         description: Синхронизация файлов
 
     - Syncthing:
         icon: syncthing.png
-        href: 
+        href: https://127.0.0.1:8384
         description: Синхронизация файлов. Клиент ПК
 
     - Qbittorrent:
         icon: qbittorrent.png
-        href: 
+        href: https://qbittorrent.homelab.ru
         description: Торрент-клиент
 
     - Gotify:
         icon: gotify.png
-        href: 
+        href: https://gotify.homelab.ru
         description: Сервер пуш-уведомлений
 
-    - Nextcloud:
-        icon: nextcloud.png
-        href: 
-        description: Домашнее облако
-
-    - Immich:
-        icon: immich.png
-        href: 
-        description: Фотогалерея 

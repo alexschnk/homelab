@@ -10,7 +10,13 @@ services:
       - ./dockhand_data:/app/data
     networks:
       proxy:
-
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.dockhand.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.dockhand.rule=Host(`dockhand.homelab.ru`)"  # Host rule for secure routing
+      - "traefik.http.routers.dockhand.tls=true" # Enable TLS for secure connection
+      - "traefik.http.routers.dockhand.middlewares=security-headers@file"
+      - "traefik.http.services.dockhand.loadbalancer.server.port=3000"
 networks:
   proxy:
      name: proxy # Specifies the external network to connect to

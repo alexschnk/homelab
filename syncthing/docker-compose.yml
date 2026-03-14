@@ -7,11 +7,12 @@ services:
       - PUID=3100
       - PGID=3100
     volumes:
+      - /home/syncthing/bases:/var/syncthing/bases
       - /home/syncthing/data:/var/syncthing/data
       - /home/syncthing/config:/var/syncthing/config
-#    ports:
+    ports:
 #      - 8384:8384 # Web UI
-#      - 22000:22000/tcp # TCP file transfers
+      - 21000:22000/tcp # TCP file transfers
 #      - 22000:22000/udp # QUIC file transfers
 #      - 2121:2132/tcp
 #      - 10.0.0.2:22000:22000/udp
@@ -26,6 +27,13 @@ services:
       retries: 3
     security_opt: 
       - no-new-privileges
+    labels: 
+      - "traefik.enable=true" # Enable Traefik on this service
+      - "traefik.http.routers.syncthing.entrypoints=https" # Secure entrypoint for HTTPS
+      - "traefik.http.routers.syncthing.rule=Host(`syncthing.homelab.ru`)"  # Host rule for secure routing
+      - "traefik.http.routers.syncthing.tls=true" # Enable TLS for secure connection
+      - "traefik.http.routers.syncthing.middlewares=security-headers@file"
+      - "traefik.http.services.syncthing.loadbalancer.server.port=8384"
 
 networks:
   proxy:

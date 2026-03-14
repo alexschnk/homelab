@@ -11,12 +11,15 @@ layout:
   Сервера:
     style: row
     columns: 4
-  
+
   Сервисы:
     style: row
-    columns: 4
+    columns: 5
 
   Закладки:
     style: row
     columns: 5
-
+  
+  Baxet Group:
+    style: row
+    columns: 5

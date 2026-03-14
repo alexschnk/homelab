@@ -5,7 +5,7 @@ log:
 theme: dark
 # This secret can also be set using the env variables AUTHELIA_JWT_SECRET_FILE
 #jwt_secret:
-default_redirection_url: https://auth.domain.ru
+default_redirection_url: https://auth.homelab.ru
 #totp:
 #    issuer: authelia.com
 webauthn:
@@ -51,7 +51,7 @@ access_control:
     default_policy: deny
     rules:
         # Rules applied to everyone
-        - domain: homepage.domain.ru
+        - domain: homepage.homelab.ru
           policy: two_factor
 session:
     name: authelia_session
@@ -59,7 +59,7 @@ session:
     #secret:
     expiration: 14400 # 4 hour
     inactivity: 14400 # 4 hour
-    domain: domain.ru # Should match whatever your root protected domain is
+    domain: homelab.ru # Should match whatever your root protected domain is
 
     # redis:
     #   host: redis

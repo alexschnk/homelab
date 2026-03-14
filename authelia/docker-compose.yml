@@ -13,7 +13,16 @@ services:
             AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: "/secrets/JWT_SECRET" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/JWT_SECRET
             AUTHELIA_SESSION_SECRET_FILE: "/secrets/SESSION_SECRET" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/SESSION_SECRET
             AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: "/secrets/STORAGE_ENCRYPTION_KEY" # tr -cd '[:alnum:]' < /dev/urandom | fold -w 64 | head -n 1 > ./secrets/STORAGE_ENCRYPTION_KEY
-
+        labels: 
+            - "traefik.enable=true" # Enable Traefik on this service
+            - "traefik.http.routers.authelia.entrypoints=https" # Secure entrypoint for HTTPS
+            - "traefik.http.routers.authelia.rule=Host(`auth.homelab.ru`)"  # Host rule for secure routing
+            - "traefik.http.routers.authelia.tls=true" # Enable TLS for secure connection
+            - "traefik.http.routers.authelia.middlewares=security-headers@file"
+            - "traefik.http.services.authelia.loadbalancer.server.port=9091"
+            - "traefik.http.middlewares.authelia.forwardAuth.address=http://authelia:9091/api/verify?rd=https://auth.homelab.ru"
+            - "traefik.http.middlewares.authelia.forwardAuth.trustForwardHeader=true"
+            - "traefik.http.middlewares.authelia.forwardAuth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 networks:
     proxy:
         external: true

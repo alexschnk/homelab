@@ -1,0 +1,18 @@
+http:
+ #region routers 
+  routers:
+    pve:
+      entryPoints:
+        - "https"
+      rule: "Host(`pve.homelab.ru`)"        # Change DOMAIN_NAME to yours
+      middlewares:
+        - security-headers
+      tls: {}
+      service: pve
+
+  services:
+    pve:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.31.10:8006"            # Change IP Address to your proxmox instance
+        passHostHeader: true
