@@ -36,7 +36,7 @@
           version: 2 # optional, defaults to 1
           enablePools: true # optional, defaults to false
           nasType: scale
-          key: 
+          key:
 
     - OpenWRT:
         icon: openwrt.png
@@ -56,6 +56,11 @@
         href: https://traefik-dashboard.homelab.ru
         description: Обратный прокси
 
+    - Authelia:
+        icon: authelia.png
+        href: https://auth.homelab.ru
+        description: Сервер аутентификации и авторизации
+    
     - Adguard home:
         icon: adguard-home.png
         href: https://adguardhome.homelab.ru
