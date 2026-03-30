@@ -17,6 +17,12 @@ entryPoints:
   https:
     address: ":443"
 
+  smb:
+    address: ":445"
+
+  sftp:
+    address: ":2122"
+
 serversTransport:
   insecureSkipVerify: true
 
